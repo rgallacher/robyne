@@ -1,0 +1,68 @@
+package weekOne;
+
+import java.util.*; 
+import java.io.*;
+
+
+public class WeekOne {
+	
+	public static String[] splitStringArray(String str) {
+		String[] values = str.split(", ");
+		return values;	
+	}
+	
+	public static int[] convertStringArrayToInt(String[] strArray) {
+		int arrLength = strArray.length;
+		int[] intArray = new int[arrLength];
+		for(int i = 0; i < arrLength ; i++) {
+			intArray[i] = Integer.parseInt(strArray[i]);
+		}
+		
+		
+		return intArray;
+	}
+	
+	  public static LinkedList findIntersection(String[] strArray) {
+		  
+		  int[] a = convertStringArrayToInt(splitStringArray(strArray[0]));
+		  int[] b = convertStringArrayToInt(splitStringArray(strArray[1]));
+		  LinkedList intersectedList = new LinkedList();
+		 	
+		  for(int i = 0; i < a.length; i++) {
+			  for(int j = 0; j < b.length; j++) {
+				  if(b[j] == a[i]) {
+					  intersectedList.add(a[i]);
+				  }
+			  }
+		  }
+		  return intersectedList;		  
+	  }
+	  
+	  public static String convertListToString(LinkedList myList) {
+		  String finalString = "";
+		  for(int i = 0; i < myList.size(); i++) {
+			  String a = myList.get(i) + ", ";
+			 finalString = finalString + a;
+		  }
+		 return finalString.substring(0,finalString.length()-2);
+	  }
+	  
+	  public static String letsDoThis(String[] strArray) {
+		  
+		return convertListToString(findIntersection(strArray));
+		  
+		  
+	  }
+
+	  public static void main (String[] args) {  
+		  
+		  String[] myStringArray = new String[] {"1, 3, 4, 7, 13", "1, 2, 3, 13, 15"};
+
+		  System.out.println(letsDoThis(myStringArray));
+
+		  
+	  }
+
+}
+
+
